@@ -28,7 +28,9 @@ $(function() {
         },
         xaxis: {
                 mode: "time",
-                tickLength: 5
+                tickLength: 5,
+                timeformat: "%b %e %H:%M",
+                monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
         },
         grid: {
             borderWidth: 1,
@@ -72,7 +74,7 @@ $(function() {
                 x: -60,
                 y: 25
             },
-            xDateFormat: "%H:%M EST",
+            xDateFormat: "%m/%d %H:%M EST",
         }
     });
 
