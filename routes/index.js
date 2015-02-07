@@ -1,24 +1,24 @@
 var express = require('express');
 var router = express.Router();
-var fillData = require('../data/data');
+// var fillData = require('../data/data');
 var DataSchema = require('../schema/data');
-var data=[];
-function loopEvent(){
-     data= fillData(data);
-     var record = new DataSchema({
-     	data: data[data.length-1]
-     })
-     record.save(function(err){
-     	if(err){
-     		console.log(err);
-     	}
-     	else{
-     		var date =new Date();
-     		console.log('Saved at '+date);
-     	}
-     })
-}
-setInterval(loopEvent,1000*60*30);
+// var data=[];
+// function loopEvent(){
+//      data= fillData(data);
+//      var record = new DataSchema({
+//      	data: data[data.length-1]
+//      })
+//      record.save(function(err){
+//      	if(err){
+//      		console.log(err);
+//      	}
+//      	else{
+//      		var date =new Date();
+//      		console.log('Saved at '+date);
+//      	}
+//      })
+// }
+// setInterval(loopEvent,1000*60*30);
 
 
 /* GET home page. */
