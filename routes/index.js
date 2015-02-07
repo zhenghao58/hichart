@@ -3,12 +3,8 @@ var router = express.Router();
 var fillData = require('../data/data');
 var DataSchema = require('../schema/data');
 var data=[];
-var time=[];
-var result={};
 function loopEvent(){
-     result= fillData(data, time);
-     data=result.data;
-     time=result.time;
+     data= fillData(data);
      var record = new DataSchema({
      	data: data[data.length-1]
      })
@@ -18,20 +14,17 @@ function loopEvent(){
      	}
      	else{
      		var date =new Date();
-     		var hour = date.getHours();
-     		var minute = date.getMinutes();
-     		var second = date.getSeconds();
      		console.log('Saved at '+date);
      	}
      })
 }
-loopEvent();
 setInterval(loopEvent,1000*60*30);
 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  DataSchema.find().setOptions({sort: 'time'})
+  var datePoint = new Date(Date.now()-1000*60*60*72)
+  DataSchema.find().gt('time', datePoint).setOptions({sort: 'time'})
   .exec(function(err, rawDataSet){
   		if (err) {
   			console.log(err)

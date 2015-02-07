@@ -1,10 +1,13 @@
 $(function() {
-    for (var i = 0; i < time.length; ++i) {
-        time[i] -= 60 * 60 * 1000 * 5;
-    }
+    var timeEST = [];
     var result = [];
+    var resultUTC = [];
     for (var i = 0; i < data.length; ++i){
-        result.push([time[i], data[i]])
+        timeEST[i] = time[i] - 60 * 60 * 1000 * 5;
+        result.push([timeEST[i], data[i]]);
+        resultUTC.push([time[i], data[i]]);
+        resultUTC[i][0] = moment(resultUTC[i][0]);
+        resultUTC[i][0] = resultUTC[i][0].format("ddd MMM D hh:mm a");
     }
 
     var container = $("#placeholder");
@@ -73,14 +76,9 @@ $(function() {
         }
     });
 
-    for (var i = 0; i < result.length; ++i) {
-        result[i][0]+= 60 * 60 * 1000 * 5;
-        result[i][0] = moment(result[i][0]);
-        result[i][0] = result[i][0].format("ddd MMM D hh:mm a");
-    }
 
     $('#dataTables-example').dataTable({
-        "data": result,
+        "data": resultUTC,
         'searching': false,
         "columns": [
             { "title": "Time" },
