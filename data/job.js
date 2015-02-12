@@ -12,7 +12,7 @@ DataSchema.findOne().gt('time', datePoint).exec(function(err, previousData){
 
           var data = previous + Math.random() * 20 - 10;
           data = Number(data.toFixed(2));
-
+          data = data < 0 ? 0 : data > 100 ? 100 : data;
           var record = new DataSchema({
                data: data
           })
