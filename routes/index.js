@@ -19,6 +19,7 @@ router.get('/', function(req, res, next) {
 			  	dataSet.push(rawData.data);
 			  	timeSet.push(rawData.time.getTime());
 			  })
+
 			  res.render('index', {
 			  	title: 'Real Time Graph Table', 
 			  	data: dataSet,
