@@ -1,7 +1,7 @@
 var db = require('../config/db');
 var DataSchema = require('../schema/data');
 var previous;
-var datePoint = new Date(Date.now()-1000*60*60*1.5);
+var datePoint = new Date(Date.now()-1000*60*60*25);
 DataSchema.findOne().gt('time', datePoint).exec(function(err, previousData){
      if(err){
           console.log(err);
