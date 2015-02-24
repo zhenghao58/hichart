@@ -6,7 +6,7 @@ var DataSchema = require('../schema/data');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  var datePoint = new Date(Date.now()-1000*60*60*72)
+  var datePoint = new Date(Date.now()-1000*60*60*24*30)
   DataSchema.find().gt('time', datePoint).setOptions({sort: 'time'})
   .exec(function(err, rawDataSet){
   		if (err) {
@@ -15,6 +15,8 @@ router.get('/', function(req, res, next) {
 			  console.log('Length: '+rawDataSet.length);
 			  var dataSet = [];
 			  var timeSet = [];
+			  rawDataSet = rawDataSet.slice(rawDataSet.length-70);
+			  console.log(rawDataSet);
 			  rawDataSet.forEach(function(rawData){
 			  	dataSet.push(rawData.data);
 			  	timeSet.push(rawData.time.getTime());

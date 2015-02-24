@@ -4,6 +4,6 @@ module.exports = mongoose.model('Data', {
   time: { 
   	type: Date,
   	default: Date.now,
-  	expires: '14d'
+  	expires: '70d'
   	}
 });

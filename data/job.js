@@ -7,8 +7,15 @@ DataSchema.findOne().gt('time', datePoint).exec(function(err, previousData){
           console.log(err);
      }
      else{
-          previous = previousData.data;
-          console.log(previous);
+          if (previousData) {
+               previous = previousData.data;
+               console.log(previous);   
+          } else{
+               previous = Math.random()*100;
+               previous = Number(previous.toFixed(2));
+               console.log("Can't find! Use a random number:"+previous);
+          };
+          
 
           var data = previous + Math.random() * 20 - 10;
           data = Number(data.toFixed(2));
