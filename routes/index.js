@@ -6,7 +6,7 @@ var DataSchema = require('../schema/data');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  var datePoint = new Date(Date.now()-1000*60*60*24*30)
+  var datePoint = new Date(Date.now()-1000*60*60*24*10)
   DataSchema.find().gt('time', datePoint).setOptions({sort: 'time'})
   .exec(function(err, rawDataSet){
   		if (err) {
